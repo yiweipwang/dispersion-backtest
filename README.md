@@ -37,9 +37,9 @@ Each run writes `runs/<variant>/run_metadata.json` with git SHA, config hash, da
 
 | Key | Name | Status |
 |-----|------|--------|
-| v1  | Classic variance dispersion | Required |
-| v2  | Replicated correlation dispersion | Required |
-| v5  | Realized-vs-implied correlation | Required |
-| v6  | 0DTE-driven dispersion | Required |
-| v3  | Vol-of-vol dispersion | Deferred (optional stretch — scaffolded) |
-| v4  | Sector dispersion | Deferred — sector ETF data not in bundle |
+| v1  | Classic variance dispersion | Completed |
+| v2  | Replicated correlation dispersion | Completed |
+| v5  | Realized-vs-implied correlation | Completed |
+| v6  | 0DTE-driven dispersion | Completed |
+| v3  | Vol-of-vol dispersion | Deferred |
+| v4  | Sector dispersion | Deferred (lack of sector ETF data) |
