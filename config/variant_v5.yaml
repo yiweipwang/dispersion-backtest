@@ -1,0 +1,18 @@
+# V5 — Realized-vs-implied correlation
+# Direct trade on rho_realized - rho_implied.
+variant: v5
+name: "Realized vs Implied Correlation"
+
+signal:
+  # Enter when rho_implied - rho_realized > entry_threshold
+  entry_threshold: 0.10
+  exit_threshold:  0.03
+  corr_window: 21             # realized correlation window (trading days)
+  holding_max_days: 21
+
+position:
+  target_vega_notional: 1_000_000
+  roll_dte_threshold: 5
+
+tearsheet:
+  title: "V5 — Realized vs Implied Correlation"

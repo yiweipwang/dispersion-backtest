@@ -1,0 +1,17 @@
+# V1 — Classic variance dispersion
+# Short SPX variance swap; long vega-neutralised basket of single-name variance swaps.
+variant: v1
+name: "Classic Variance Dispersion"
+
+signal:
+  # Enter when (K_VS_index - sum(w_i * K_VS_i)) > entry_threshold (vol points)
+  entry_threshold: 2.0        # vol points
+  exit_threshold:  0.5        # close when spread compresses below this
+  holding_max_days: 21        # force roll if held longer
+
+position:
+  target_vega_notional: 1_000_000   # USD per leg
+  roll_dte_threshold: 5             # roll when nearest expiry < 5 DTE
+
+tearsheet:
+  title: "V1 — Classic Variance Dispersion"

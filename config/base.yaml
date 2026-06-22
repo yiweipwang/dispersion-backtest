@@ -1,0 +1,69 @@
+# ── Universe ──────────────────────────────────────────────────────────────────
+universe:
+  index: SPX
+  singles: [AAPL, MSFT, NVDA, TSLA]
+  index_underlier_id: null   # resolved from option_underlier_ticker_mapping
+
+# ── Time windows ──────────────────────────────────────────────────────────────
+backtest:
+  start_date: "2022-01-03"
+  end_date:   "2022-01-31"
+  # Pre-period for rolling-window estimation (in equity_daily_2021_jan2022)
+  lookback_start: "2021-10-01"
+
+# ── Data paths (relative to repo root) ────────────────────────────────────────
+data:
+  root: "Sample Data/jan2022_5ticker"
+  files:
+    option_chain_eod:           "option_chain_eod_oct2021_jan2022.parquet"
+    option_trades_nbbo:         "option_trades_with_nbbo_jan2022.parquet"
+    option_trades_greeks:       "option_trades_with_greeks_jan2022.parquet"
+    underlier_mapping:          "option_underlier_ticker_mapping.parquet"
+    equity_daily:               "equity_daily_2021_jan2022.parquet"
+    stock_daily_close:          "stock_daily_close_2022.parquet"
+    auction_window_trades:      "auction_window_trades_jan2022.parquet"
+    auction_volume_summary:     "auction_volume_summary_jan2022.parquet"
+    intraday_nbbo:              "intraday_nbbo_close_open_windows_jan2022.parquet"
+    earnings_calendar:          "earnings_calendar_jan2022.parquet"
+    macro_regime:               "macro_regime_jan2022.parquet"
+    vix9d:                      "vix9d_jan2022.parquet"
+    sp500_constituents:         "index_constituents_sp500_jan2022.parquet"
+
+# ── Realized vol windows ───────────────────────────────────────────────────────
+realized:
+  windows: [5, 10, 21]        # trading days
+  default_window: 21
+
+# ── Implied vol ────────────────────────────────────────────────────────────────
+implied:
+  min_dte: 7                  # minimum DTE for near-month IV
+  target_tenor: 30            # days for term-structure interpolation
+
+# ── Basket weights ────────────────────────────────────────────────────────────
+basket:
+  method: vega_neutral        # vega_neutral | spx_weight | equal_vega
+
+# ── Execution ─────────────────────────────────────────────────────────────────
+execution:
+  fill_price: mid             # mid | bid | ask
+  delta_hedge_venue: auction  # auction | nbbo_close
+  participation_cap: 0.10     # max 10% of auction volume for delta hedge
+
+# ── Cost model ────────────────────────────────────────────────────────────────
+costs:
+  commission_per_contract: 0.65   # USD per side
+  sec_occ_per_contract:    0.04   # USD per sell side
+  stock_commission_per_share: 0.005
+  market_impact_alpha: 0.10       # sqrt-participation impact coefficient
+
+# ── P&L ───────────────────────────────────────────────────────────────────────
+pnl:
+  option_multiplier: 100          # contracts × 100 shares
+
+# ── Risk ──────────────────────────────────────────────────────────────────────
+risk:
+  var_confidence: 0.99
+  tail_correlation_shock: 1.0
+
+# ── Reproducibility ───────────────────────────────────────────────────────────
+seed: 42

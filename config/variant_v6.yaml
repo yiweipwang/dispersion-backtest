@@ -1,0 +1,18 @@
+# V6 — 0DTE-driven dispersion
+# Sized and timed off intraday 0DTE flow and dealer GEX.
+variant: v6
+name: "0DTE-Driven Dispersion"
+
+signal:
+  # Enter at 15:30 when SPX/SPXW dealer GEX is below gex_threshold (strongly negative)
+  gex_threshold: -500_000_000   # USD (notional GEX)
+  signal_time: "15:30"          # intraday trigger time (Eastern)
+  entry_venue: moc              # enter at MOC
+  exit_venue:  moo              # exit next morning at MOO
+
+position:
+  target_vega_notional: 500_000   # smaller notional — overnight only
+  # Trade cycle: open at close, close at next open (1 overnight hold)
+
+tearsheet:
+  title: "V6 — 0DTE-Driven Dispersion"

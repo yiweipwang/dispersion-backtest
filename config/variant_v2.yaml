@@ -1,0 +1,17 @@
+# V2 — Replicated correlation dispersion
+# Same economic exposure as V1 but index leg built from OTM SPX options strip.
+variant: v2
+name: "Replicated Correlation Dispersion"
+
+signal:
+  entry_threshold: 2.0
+  exit_threshold:  0.5
+  holding_max_days: 21
+
+position:
+  target_vega_notional: 1_000_000
+  roll_dte_threshold: 5
+  delta_hedge_daily: true
+
+tearsheet:
+  title: "V2 — Replicated Correlation Dispersion"
